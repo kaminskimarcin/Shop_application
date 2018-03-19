@@ -14,19 +14,6 @@ import java.util.List;
 public class ShoppingCart {
     private Long id;
     private Users users;
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setUsers(Users users) {
-        this.users = users;
-    }
-
-    public void setProducts(List<Products> products) {
-        this.products = products;
-    }
-
     private List<Products> products = new ArrayList<>();
 
     @Id
@@ -51,4 +38,17 @@ public class ShoppingCart {
     public List<Products> getProducts() {
         return products;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public void setProducts(List<Products> products) {
+        this.products = products;
+    }
+
 }
