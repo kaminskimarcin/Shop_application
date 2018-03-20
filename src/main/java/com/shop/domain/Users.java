@@ -10,35 +10,33 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity(name = "USERS")
 public class Users {
+    private Long id;
+    private String name;
+    private String password;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "password")
-    private String password;
-
+    @Column(name = "USER_ID")
     public Long getId() {
         return id;
+    }
+
+    @Column(name = "NAME")
+    public String getName() {
+        return name;
+    }
+
+    @Column(name = "PASSWORD")
+    public String getPassword() {
+        return password;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {

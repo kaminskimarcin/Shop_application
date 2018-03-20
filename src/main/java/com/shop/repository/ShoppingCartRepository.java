@@ -11,5 +11,5 @@ import javax.transaction.Transactional;
 @Repository
 public interface ShoppingCartRepository extends CrudRepository<ShoppingCart, Long> {
 
-    Products addToCart(Products products);
+    ShoppingCart save(ShoppingCart shoppingCart);
 }

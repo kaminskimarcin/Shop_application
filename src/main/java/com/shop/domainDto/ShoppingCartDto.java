@@ -17,5 +17,7 @@ public class ShoppingCartDto {
     private Users users;
     private List<Products> products = new ArrayList<>();
 
-
+    public ShoppingCartDto(Users users) {
+        this.users = users;
+    }
 }

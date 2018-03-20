@@ -1,7 +1,9 @@
 package com.shop.controller;
 
 import com.shop.domainDto.ProductsDto;
+import com.shop.domainDto.UsersDto;
 import com.shop.mapper.ProductsMapper;
+import com.shop.mapper.UsersMapper;
 import com.shop.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,9 @@ public class ShopController {
 
     @Autowired
     private ProductsMapper productsMapper;
+
+    @Autowired
+    private UsersMapper usersMapper;
 
     @RequestMapping(method = RequestMethod.GET, value="/products")
     public List<ProductsDto> getAllProducts() {
