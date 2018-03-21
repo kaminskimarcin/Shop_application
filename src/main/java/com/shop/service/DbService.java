@@ -9,7 +9,6 @@ import com.shop.mapper.UsersMapper;
 import com.shop.repository.ProductsRepository;
 import com.shop.repository.ShoppingCartRepository;
 import com.shop.repository.UsersRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +36,10 @@ public class DbService {
         return productsRepository.findAll();
     }
 
+    public Products getById(final Long id) {
+        return productsRepository.getById(id);
+    }
+
     public Products saveProduct(final Products products) {
         return productsRepository.save(products);
     }
@@ -45,9 +48,11 @@ public class DbService {
         productsRepository.deleteById(id);
     }
 
-    public ShoppingCart saveProductsInShoppingCart(final ShoppingCart shoppingCart, Products product) {
-        shoppingCart.getProducts().add(product);
-        return shoppingCartRepository.save(shoppingCart);
+    public ShoppingCartDto saveProductsInShoppingCart(final Long userId, final Long productId) {
+        ShoppingCart shoppingCart = shoppingCartRepository.getByUsersId(userId);
+        ShoppingCartDto shoppingCartDto = shoppingCartMapper.shoppingCartToShoppingCartDto(shoppingCart);
+        shoppingCartDto.getProducts().add(getById(productId));
+        return shoppingCartDto;
     }
 
     public ShoppingCart createShoppingCart(final ShoppingCart shoppingCart) {
@@ -58,4 +63,5 @@ public class DbService {
         createShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(new ShoppingCartDto(users, new ArrayList<>())));
         return usersRepository.save(users);
     }
+
 }
