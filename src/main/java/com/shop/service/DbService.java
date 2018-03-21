@@ -5,6 +5,7 @@ import com.shop.domain.ShoppingCart;
 import com.shop.domain.Users;
 import com.shop.domainDto.ShoppingCartDto;
 import com.shop.mapper.ShoppingCartMapper;
+import com.shop.mapper.UsersMapper;
 import com.shop.repository.ProductsRepository;
 import com.shop.repository.ShoppingCartRepository;
 import com.shop.repository.UsersRepository;
@@ -29,6 +30,9 @@ public class DbService {
     @Autowired
     private ShoppingCartMapper shoppingCartMapper;
 
+    @Autowired
+    private UsersMapper usersMapper;
+
     public List<Products> getAllProducts() {
         return productsRepository.findAll();
     }
@@ -51,7 +55,7 @@ public class DbService {
     }
 
     public Users saveUser(final Users users) {
-        createShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(new ShoppingCartDto(users)));
+        createShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(new ShoppingCartDto(users, new ArrayList<>())));
         return usersRepository.save(users);
     }
 }

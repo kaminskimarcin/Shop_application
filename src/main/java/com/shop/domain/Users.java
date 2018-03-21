@@ -21,6 +21,7 @@ public class Users {
         return id;
     }
 
+
     @Column(name = "NAME")
     public String getName() {
         return name;

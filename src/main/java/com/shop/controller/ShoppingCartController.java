@@ -1,9 +1,12 @@
 package com.shop.controller;
 
+import com.shop.domain.Products;
 import com.shop.domain.ShoppingCart;
 import com.shop.domain.Users;
 import com.shop.domainDto.ProductsDto;
+import com.shop.domainDto.ShoppingCartDto;
 import com.shop.mapper.ProductsMapper;
+import com.shop.mapper.ShoppingCartMapper;
 import com.shop.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +21,8 @@ public class ShoppingCartController {
     @Autowired
     private ProductsMapper productsMapper;
 
-    private ShoppingCart shoppingCart;
+    @Autowired
+    private ShoppingCartMapper shoppingCartMapper;
 
-    private Users users;
 
-    @RequestMapping(method = RequestMethod.POST, value="/addToShoppingCart")
-    public void addProductToShoppingCart(@PathVariable Long id, ProductsDto productsDto) {
-
-    }
 }
