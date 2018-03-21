@@ -24,7 +24,7 @@ public class ShoppingCartController {
     @Autowired
     private ShoppingCartMapper shoppingCartMapper;
 
-    @RequestMapping(method = RequestMethod.POST, value="/addToShoppingCart/{cartId}/{productId}")
+    @RequestMapping(method = RequestMethod.PUT, value="/addToShoppingCart/{cartId}/{productId}")
     public void addProductToShoppingCart(@PathVariable Long cartId, Long productId) {
         service.saveShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(service.saveProductsInShoppingCart(cartId, productId)));
     }

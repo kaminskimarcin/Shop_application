@@ -65,6 +65,7 @@ public class DbService {
     }
 
     public ShoppingCart saveShoppingCart(final ShoppingCart shoppingCart) {
+        LOGGER.info("Products size: " + shoppingCart.getProducts().size());
         return shoppingCartRepository.save(shoppingCart);
     }
 
