@@ -4,6 +4,7 @@ import com.shop.domain.ShoppingCart;
 import com.shop.domainDto.ShoppingCartDto;
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class ShoppingCartMapper {
 

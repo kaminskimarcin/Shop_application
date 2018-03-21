@@ -41,7 +41,7 @@ public class Products {
         return price;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "products")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "products")
     public List<ShoppingCart> getShoppingCarts() {
         return shoppingCarts;
     }

@@ -9,14 +9,18 @@ import com.shop.mapper.UsersMapper;
 import com.shop.repository.ProductsRepository;
 import com.shop.repository.ShoppingCartRepository;
 import com.shop.repository.UsersRepository;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 public class DbService {
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(DbService.class);
+
     @Autowired
     ProductsRepository productsRepository;
 
@@ -48,19 +52,24 @@ public class DbService {
         productsRepository.deleteById(id);
     }
 
-    public ShoppingCartDto saveProductsInShoppingCart(final Long userId, final Long productId) {
-        ShoppingCart shoppingCart = shoppingCartRepository.getByUsersId(userId);
+    public ShoppingCartDto saveProductsInShoppingCart(final Long cartId, final Long productId) {
+        LOGGER.info("Starting...");
+        ShoppingCart shoppingCart = shoppingCartRepository.getById(cartId);
+        LOGGER.info("Mapping...");
         ShoppingCartDto shoppingCartDto = shoppingCartMapper.shoppingCartToShoppingCartDto(shoppingCart);
+        LOGGER.info("Cart id: " + shoppingCartDto.getId());
+        LOGGER.info("User id: " + shoppingCartDto.getUsers());
         shoppingCartDto.getProducts().add(getById(productId));
+        LOGGER.info("Products: " + shoppingCartDto.getProducts().size());
         return shoppingCartDto;
     }
 
-    public ShoppingCart createShoppingCart(final ShoppingCart shoppingCart) {
+    public ShoppingCart saveShoppingCart(final ShoppingCart shoppingCart) {
         return shoppingCartRepository.save(shoppingCart);
     }
 
     public Users saveUser(final Users users) {
-        createShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(new ShoppingCartDto(users, new ArrayList<>())));
+        saveShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(new ShoppingCartDto(users, new ArrayList<>())));
         return usersRepository.save(users);
     }
 
