@@ -12,8 +12,7 @@ public class ShoppingCartMapper {
         return new ShoppingCart(
                 shoppingCartDto.getId(),
                 shoppingCartDto.getUsers(),
-                shoppingCartDto.getProducts(),
-                shoppingCartDto.getTest()
+                shoppingCartDto.getProducts()
         );
     }
 
@@ -21,8 +20,7 @@ public class ShoppingCartMapper {
         return new ShoppingCartDto(
                 shoppingCart.getId(),
                 shoppingCart.getUsers(),
-                shoppingCart.getProducts(),
-                shoppingCart.getTest()
+                shoppingCart.getProducts()
         );
     }
 }

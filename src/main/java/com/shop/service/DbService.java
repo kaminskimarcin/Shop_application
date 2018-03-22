@@ -58,23 +58,15 @@ public class DbService {
     }
 
     public ShoppingCartDto saveProductsInShoppingCart(final Long cartId, final Long productId) {
-        LOGGER.info("Starting...");
-        LOGGER.info("CartId: " + cartId + " + productId: " + productId);
         ShoppingCart shoppingCart = shoppingCartRepository.getById(cartId);
-        LOGGER.info("Mapping...");
         ShoppingCartDto shoppingCartDto = shoppingCartMapper.shoppingCartToShoppingCartDto(shoppingCart);
-        LOGGER.info("Cart id: " + shoppingCartDto.getId());
-        LOGGER.info("User id: " + shoppingCartDto.getUsers());
         shoppingCartDto.getProducts().add(getById(productId));
-        LOGGER.info("Products: " + shoppingCartDto.getProducts().size());
-        LOGGER.info(shoppingCartDto.getTest());
         updateProducts(cartId, productId);
         return shoppingCartDto;
     }
 
     public ProductsDto updateProducts(final Long cartId, final Long productId) {
         Products products = productsRepository.getById(productId);
-        LOGGER.info("Information: " + products.getId() + " " + products.getName());
         ProductsDto productsDto = productsMapper.productsToProductsDto(products);
         productsDto.getShoppingCart().add(shoppingCartRepository.getById(cartId));
         saveProduct(productsMapper.productsDtoToProducts(productsDto));
@@ -87,7 +79,7 @@ public class DbService {
     }
 
     public Users saveUser(final Users users) {
-        saveShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(new ShoppingCartDto(users, new ArrayList<>(), "Test test")));
+        saveShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(new ShoppingCartDto(users, new ArrayList<>())));
         return usersRepository.save(users);
     }
 

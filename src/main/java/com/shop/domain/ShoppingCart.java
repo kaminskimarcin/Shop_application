@@ -15,7 +15,6 @@ public class ShoppingCart {
     private Long id;
     private Users users;
     private List<Products> products = new ArrayList<>();
-    private String test;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,10 +39,6 @@ public class ShoppingCart {
         return products;
     }
 
-    public String getTest() {
-        return test;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -54,9 +49,5 @@ public class ShoppingCart {
 
     public void setProducts(List<Products> products) {
         this.products = products;
-    }
-
-    public void setTest(String test) {
-        this.test = test;
     }
 }
