@@ -21,12 +21,13 @@ public class ProductsMapper {
         return new ProductsDto(
                 products.getId(),
                 products.getName(),
-                products.getPrice());
+                products.getPrice(),
+                products.getShoppingCarts());
     }
 
     public List<ProductsDto> mapToProductsDtoList(final List<Products> productsList) {
         return productsList.stream()
-                .map(t -> new ProductsDto(t.getId(), t.getName(), t.getPrice()))
+                .map(t -> new ProductsDto(t.getId(), t.getName(), t.getPrice(), t.getShoppingCarts()))
                 .collect(Collectors.toList());
     }
 }

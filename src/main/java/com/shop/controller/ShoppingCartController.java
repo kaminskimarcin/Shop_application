@@ -1,10 +1,5 @@
 package com.shop.controller;
 
-import com.shop.domain.Products;
-import com.shop.domain.ShoppingCart;
-import com.shop.domain.Users;
-import com.shop.domainDto.ProductsDto;
-import com.shop.domainDto.ShoppingCartDto;
 import com.shop.mapper.ProductsMapper;
 import com.shop.mapper.ShoppingCartMapper;
 import com.shop.service.DbService;
@@ -25,7 +20,7 @@ public class ShoppingCartController {
     private ShoppingCartMapper shoppingCartMapper;
 
     @RequestMapping(method = RequestMethod.PUT, value="/addToShoppingCart/{cartId}/{productId}")
-    public void addProductToShoppingCart(@PathVariable Long cartId, Long productId) {
+    public void addProductToShoppingCart(@PathVariable Long cartId, @PathVariable Long productId) {
         service.saveShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(service.saveProductsInShoppingCart(cartId, productId)));
     }
 }

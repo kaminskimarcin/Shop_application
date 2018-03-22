@@ -40,4 +40,6 @@ public class ShopController {
     public void deleteTask(@PathVariable Long id) {
         service.deleteProduct(id);
     }
+
+
 }

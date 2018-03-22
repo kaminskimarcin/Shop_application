@@ -18,9 +18,11 @@ public class ShoppingCartDto {
     private Long id;
     private Users users;
     private List<Products> products;
+    private String test;
 
-    public ShoppingCartDto(Users users, List<Products> products) {
+    public ShoppingCartDto(Users users, List<Products> products, String test) {
         this.users = users;
         this.products = products;
+        this.test = test;
     }
 }
