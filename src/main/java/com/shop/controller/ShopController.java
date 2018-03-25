@@ -21,20 +21,18 @@ public class ShopController {
     @Autowired
     private ProductsMapper productsMapper;
 
-    @RequestMapping(method = RequestMethod.GET, value="/products")
+    @RequestMapping(method = RequestMethod.GET, value = "/products")
     public List<ProductsDto> getAllProducts() {
         return productsMapper.mapToProductsDtoList(productService.getAllProducts());
     }
 
-    @RequestMapping(method = RequestMethod.POST, value="/addProduct", consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "/addProduct", consumes = APPLICATION_JSON_VALUE)
     public void createTask(@RequestBody ProductsDto productsDto) {
         productService.saveProduct(productsMapper.productsDtoToProducts(productsDto));
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value="/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public void deleteTask(@PathVariable Long id) {
         productService.deleteProduct(id);
     }
-
-
 }
