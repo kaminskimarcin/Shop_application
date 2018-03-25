@@ -2,7 +2,8 @@ package com.shop.controller;
 
 import com.shop.mapper.ProductsMapper;
 import com.shop.mapper.ShoppingCartMapper;
-import com.shop.service.DbService;
+import com.shop.repository.ShoppingCartRepository;
+import com.shop.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/Cart")
 public class ShoppingCartController {
     @Autowired
-    private DbService service;
+    private ShoppingCartService shoppingCartService;
 
     @Autowired
     private ProductsMapper productsMapper;
@@ -21,6 +22,6 @@ public class ShoppingCartController {
 
     @RequestMapping(method = RequestMethod.PUT, value="/addToShoppingCart/{cartId}/{productId}")
     public void addProductToShoppingCart(@PathVariable Long cartId, @PathVariable Long productId) {
-        service.saveShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(service.saveProductsInShoppingCart(cartId, productId)));
+        shoppingCartService.saveShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(shoppingCartService.saveProductsInShoppingCart(cartId, productId)));
     }
 }
