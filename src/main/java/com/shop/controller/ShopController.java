@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.domainDto.ProductsDto;
+import com.shop.domainDto.ProductsView;
 import com.shop.mapper.ProductsMapper;
 import com.shop.mapper.UsersMapper;
 import com.shop.service.ProductService;
@@ -22,7 +23,7 @@ public class ShopController {
     private ProductsMapper productsMapper;
 
     @RequestMapping(method = RequestMethod.GET, value = "/products")
-    public List<ProductsDto> getAllProducts() {
+    public List<ProductsView> getAllProducts() {
         return productsMapper.mapToProductsDtoList(productService.getAllProducts());
     }
 

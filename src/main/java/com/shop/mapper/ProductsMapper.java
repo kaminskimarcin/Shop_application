@@ -2,6 +2,7 @@ package com.shop.mapper;
 
 import com.shop.domain.Products;
 import com.shop.domainDto.ProductsDto;
+import com.shop.domainDto.ProductsView;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -25,9 +26,9 @@ public class ProductsMapper {
                 products.getShoppingCarts());
     }
 
-    public List<ProductsDto> mapToProductsDtoList(final List<Products> productsList) {
+    public List<ProductsView> mapToProductsDtoList(final List<Products> productsList) {
         return productsList.stream()
-                .map(t -> new ProductsDto(t.getId(), t.getName(), t.getPrice(), t.getShoppingCarts()))
+                .map(t -> new ProductsView(t.getId(), t.getName(), t.getPrice()))
                 .collect(Collectors.toList());
     }
 }
