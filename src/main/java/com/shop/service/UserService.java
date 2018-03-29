@@ -1,5 +1,6 @@
 package com.shop.service;
 
+import com.shop.domain.Products;
 import com.shop.domain.Users;
 import com.shop.domainDto.ShoppingCartDto;
 import com.shop.mapper.ShoppingCartMapper;
@@ -23,5 +24,9 @@ public class UserService {
     public Users saveUser(final Users users) {
         shoppingCartService.saveShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(new ShoppingCartDto(users, new ArrayList<>())));
         return usersRepository.save(users);
+    }
+
+    public Users getUser(final Long id) {
+        return usersRepository.getById(id);
     }
 }

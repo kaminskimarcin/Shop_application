@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import com.shop.domain.Users;
 import com.shop.domainDto.UsersDto;
 import com.shop.mapper.UsersMapper;
 import com.shop.service.UserService;
@@ -19,7 +20,12 @@ public class UsersController {
     private UsersMapper usersMapper;
 
     @RequestMapping(method = RequestMethod.POST, value = "/createAccount", consumes = APPLICATION_JSON_VALUE)
-        public void createUser(@RequestBody UsersDto usersDto) {
-            userService.saveUser(usersMapper.usersDtoToUsers(usersDto));
+    public void createUser(@RequestBody UsersDto usersDto) {
+        userService.saveUser(usersMapper.usersDtoToUsers(usersDto));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/getUser/{id}")
+    public Users getUser(@PathVariable final Long id) {
+        return userService.getUser(id);
     }
 }

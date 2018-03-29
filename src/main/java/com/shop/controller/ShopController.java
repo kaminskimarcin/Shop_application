@@ -24,7 +24,7 @@ public class ShopController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/products")
     public List<ProductsView> getAllProducts() {
-        return productsMapper.mapToProductsDtoList(productService.getAllProducts());
+        return productsMapper.mapToProductsViewList(productService.getAllProducts());
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/addProduct", consumes = APPLICATION_JSON_VALUE)

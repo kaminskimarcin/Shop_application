@@ -26,7 +26,7 @@ public class ProductsMapper {
                 products.getShoppingCarts());
     }
 
-    public List<ProductsView> mapToProductsDtoList(final List<Products> productsList) {
+    public List<ProductsView> mapToProductsViewList(final List<Products> productsList) {
         return productsList.stream()
                 .map(t -> new ProductsView(t.getId(), t.getName(), t.getPrice()))
                 .collect(Collectors.toList());
