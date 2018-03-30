@@ -2,11 +2,15 @@ package com.shop.mapper;
 
 import com.shop.domain.ShoppingCart;
 import com.shop.domainDto.ShoppingCartDto;
+import com.shop.domainDto.ShoppingCartView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class ShoppingCartMapper {
+    @Autowired
+    private ProductsMapper productsMapper;
 
     public ShoppingCart shoppingCartDtoToShoppingCart(ShoppingCartDto shoppingCartDto) {
         return new ShoppingCart(
@@ -22,5 +26,14 @@ public class ShoppingCartMapper {
                 shoppingCart.getUsers(),
                 shoppingCart.getProducts()
         );
+    }
+
+    public ShoppingCartView shoppingCartToShoppingCartView(ShoppingCart shoppingCart) {
+        return new ShoppingCartView(
+                shoppingCart.getId(),
+                shoppingCart.getUsers().getId(),
+                productsMapper.mapToProductsViewList(shoppingCart.getProducts()),
+                shoppingCart.getProducts().stream()
+                        .mapToDouble(k -> k.getPrice()).sum());
     }
 }
