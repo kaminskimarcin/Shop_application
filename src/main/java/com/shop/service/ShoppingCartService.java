@@ -17,13 +17,7 @@ public class ShoppingCartService {
     private ShoppingCartRepository shoppingCartRepository;
 
     @Autowired
-    private UsersRepository usersRepository;
-
-    @Autowired
     private UserService userService;
-
-    @Autowired
-    private ShoppingCartMapper shoppingCartMapper;
 
     @Autowired
     private ProductService productService;
@@ -31,12 +25,11 @@ public class ShoppingCartService {
     @Autowired
     private UsersMapper usersMapper;
 
-    public ShoppingCartDto saveProductsInShoppingCart(final Long cartId, final Long productId) {
-        ShoppingCart shoppingCart = shoppingCartRepository.getById(cartId);
-        ShoppingCartDto shoppingCartDto = shoppingCartMapper.shoppingCartToShoppingCartDto(shoppingCart);
-        shoppingCartDto.getProducts().add(productService.getById(productId));
-        productService.updateProducts(cartId, productId);
-        return shoppingCartDto;
+    public ShoppingCart saveProductsInShoppingCart(final Long userId, final Long productId) {
+        ShoppingCart shoppingCart = shoppingCartRepository.getByUsers(userService.getUser(userId));
+        shoppingCart.getProducts().add(productService.getById(productId));
+        productService.updateProducts(shoppingCart.getId(), productId);
+        return shoppingCart;
     }
 
     public ShoppingCart saveShoppingCart(final ShoppingCart shoppingCart) {
