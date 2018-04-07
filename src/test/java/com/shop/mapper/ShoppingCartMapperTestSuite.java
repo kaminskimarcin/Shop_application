@@ -24,7 +24,7 @@ public class ShoppingCartMapperTestSuite {
     @Test
     public void testCartToCartDto() {
         //Given
-        Users users = new Users(1L, "TestUserName", "TestUserPassword");
+        Users users = new Users(1L, "TestUserName", "TestUserPassword", "USER");
         List<Products> productsList = new ArrayList<>();
         Products products = new Products(1L, "TestProductName", 20.00, new ArrayList<>());
         productsList.add(products);
@@ -47,7 +47,7 @@ public class ShoppingCartMapperTestSuite {
     @Test
     public void testCartDtoToCart() {
         //Given
-        Users users = new Users(1L, "TestUserName", "TestUserPassword");
+        Users users = new Users(1L, "TestUserName", "TestUserPassword", "USER");
         List<Products> productsList = new ArrayList<>();
         Products products = new Products(1L, "TestProductName", 20.00, new ArrayList<>());
         productsList.add(products);

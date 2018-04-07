@@ -19,7 +19,7 @@ public class UsersMapperTestSuite {
     @Test
     public void testUsersDtoToUsers() {
         //Given
-        UsersDto usersDto = new UsersDto(1L, "TestName", "TestPassword");
+        UsersDto usersDto = new UsersDto(1L, "TestName", "TestPassword", "USER");
         //When
         Users users = usersMapper.usersDtoToUsers(usersDto);
         Long id = users.getId();
@@ -34,7 +34,7 @@ public class UsersMapperTestSuite {
     @Test
     public void testUsersToUsersDto() {
         //Given
-        Users users = new Users(1L, "TestName", "TestPassword");
+        Users users = new Users(1L, "TestName", "TestPassword", "USER");
         //When
         UsersDto usersDto = usersMapper.usersToUsersDto(users);
         Long id = usersDto.getId();
