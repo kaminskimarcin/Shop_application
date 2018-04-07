@@ -15,17 +15,17 @@ import org.springframework.stereotype.Service;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UsersRepository usersRepository;
+    private UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users user = usersRepository.getByName(username);
+    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+        Users user = userService.getUserByName(name);
 
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password");
         }
 
-        return new User(username, user.getPassword(), true, true, true,
+        return new User(name, user.getPassword(), true, true, true,
                 true, AuthorityUtils.createAuthorityList(user.getRole()));
 
     }

@@ -28,4 +28,9 @@ public class UsersController {
     public Users getUser(@PathVariable final Long id) {
         return userService.getUser(id);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/getUserByName/{name}")
+    public Users getUserByName(@PathVariable final String name) {
+        return userService.getUserByName(name);
+    }
 }

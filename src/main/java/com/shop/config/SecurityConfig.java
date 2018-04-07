@@ -13,12 +13,14 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private static String REALM_NAME = "RESTFUL_REALM";
+    private static String REALM_NAME ="RESTFUL_REALM";
 
+    @Qualifier("userDetailsServiceImpl")
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -42,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Bean
-    public BasicAuthenticationEntryPoint getBasicAuthEntryPoint() {
+    public BasicAuthenticationEntryPoint getBasicAuthEntryPoint(){
         BasicAuthenticationEntryPoint basicAuthEntryPoint = new BasicAuthenticationEntryPoint();
         basicAuthEntryPoint.setRealmName(REALM_NAME);
         return basicAuthEntryPoint;
