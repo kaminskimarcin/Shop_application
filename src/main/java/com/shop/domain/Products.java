@@ -5,13 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "PRODUCTS")
-public class Products {
+public class Products implements Serializable{
     private Long id;
     private String name;
     private double price;

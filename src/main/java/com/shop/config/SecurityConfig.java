@@ -11,8 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
-
 
 @Configuration
 @EnableWebSecurity
@@ -31,17 +32,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/").hasAnyAuthority("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/").hasAnyAuthority("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/").hasAnyAuthority("ADMIN")
-                .anyRequest().authenticated()
-                .and().httpBasic()
-                .realmName(REALM_NAME).authenticationEntryPoint(getBasicAuthEntryPoint())
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .antMatchers(HttpMethod.GET, "/").hasAnyAuthority("ADMIN");
     }
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Bean
     public BasicAuthenticationEntryPoint getBasicAuthEntryPoint(){
@@ -49,5 +49,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         basicAuthEntryPoint.setRealmName(REALM_NAME);
         return basicAuthEntryPoint;
     }
-
 }
