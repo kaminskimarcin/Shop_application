@@ -13,6 +13,7 @@ public class Users {
     private Long id;
     private String name;
     private String password;
+    private String role;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,6 +33,11 @@ public class Users {
         return password;
     }
 
+    @Column(name = "ROLE")
+    public String getRole() {
+        return role;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -42,5 +48,9 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

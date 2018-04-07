@@ -11,7 +11,8 @@ public class UsersMapper {
         return new Users(
                 usersDto.getId(),
                 usersDto.getName(),
-                usersDto.getPassword()
+                usersDto.getPassword(),
+                "USER"
         );
     }
 
@@ -19,7 +20,8 @@ public class UsersMapper {
         return new UsersDto(
                 users.getId(),
                 users.getName(),
-                users.getPassword()
+                users.getPassword(),
+                "USER"
         );
     }
 
