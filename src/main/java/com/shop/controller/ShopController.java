@@ -37,8 +37,8 @@ public class ShopController {
         productService.deleteProduct(id);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/test")
-    public int getTestValue() {
-        return 2;
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public ProductsView getProductById(@PathVariable Long id) {
+        return productsMapper.productsToProductsView(productService.getById(id));
     }
 }
