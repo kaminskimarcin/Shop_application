@@ -3,7 +3,6 @@ package com.shop.controller;
 import com.shop.domainDto.ProductsDto;
 import com.shop.domainDto.ProductsView;
 import com.shop.mapper.ProductsMapper;
-import com.shop.mapper.UsersMapper;
 import com.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +37,7 @@ public class ShopController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public ProductsView getProductById(@PathVariable Long id) {
-        return productsMapper.productsToProductsView(productService.getById(id));
+    public ProductsView getProductById(@PathVariable Long id) throws ProductNotFoundException {
+        return productsMapper.productsToProductsView(productService.getById(id).orElseThrow(ProductNotFoundException::new));
     }
 }

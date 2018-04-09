@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -30,8 +31,8 @@ public class ProductService {
         return productsDto;
     }
 
-    public Products getById(final Long id) {
-        return productsRepository.getById(id);
+    public Optional<Products> getById(final Long id) {
+        return productsRepository.findById(id);
     }
 
     public Products saveProduct(final Products products) {

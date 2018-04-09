@@ -23,7 +23,7 @@ public class ShoppingCartController {
     private ShoppingCartMapper shoppingCartMapper;
 
     @RequestMapping(method = RequestMethod.PUT, value="/addToShoppingCart/{cartId}/{productId}")
-    public void addProductToShoppingCart(@PathVariable Long cartId, @PathVariable Long productId) {
+    public void addProductToShoppingCart(@PathVariable Long cartId, @PathVariable Long productId) throws ProductNotFoundException {
         shoppingCartService.saveShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(shoppingCartService.saveProductsInShoppingCart(cartId, productId)));
     }
 

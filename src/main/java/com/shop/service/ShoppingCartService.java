@@ -1,5 +1,6 @@
 package com.shop.service;
 
+import com.shop.controller.ProductNotFoundException;
 import com.shop.domain.ShoppingCart;
 import com.shop.domainDto.ShoppingCartDto;
 import com.shop.domainDto.UsersDto;
@@ -31,10 +32,10 @@ public class ShoppingCartService {
     @Autowired
     private UsersMapper usersMapper;
 
-    public ShoppingCartDto saveProductsInShoppingCart(final Long cartId, final Long productId) {
+    public ShoppingCartDto saveProductsInShoppingCart(final Long cartId, final Long productId) throws ProductNotFoundException {
         ShoppingCart shoppingCart = shoppingCartRepository.getById(cartId);
         ShoppingCartDto shoppingCartDto = shoppingCartMapper.shoppingCartToShoppingCartDto(shoppingCart);
-        shoppingCartDto.getProducts().add(productService.getById(productId));
+        shoppingCartDto.getProducts().add(productService.getById(productId).orElseThrow(ProductNotFoundException::new));
         productService.updateProducts(cartId, productId);
         return shoppingCartDto;
     }

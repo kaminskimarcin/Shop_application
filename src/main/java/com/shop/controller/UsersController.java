@@ -25,7 +25,7 @@ public class UsersController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getUser/{id}")
-    public Users getUser(@PathVariable final Long id) {
-        return userService.getUser(id);
+    public UsersDto getUser(@PathVariable final Long id) {
+        return usersMapper.usersToUsersDto(userService.getUser(id));
     }
 }
