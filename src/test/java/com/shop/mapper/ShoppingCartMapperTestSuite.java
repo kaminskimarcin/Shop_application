@@ -24,11 +24,11 @@ public class ShoppingCartMapperTestSuite {
     @Test
     public void testCartToCartDto() {
         //Given
-        Users users = new Users(1L, "TestUserName", "TestUserPassword");
+        Users users = new Users(1L, "TestUserName", "TestUserPassword", "EMAIL");
         List<Products> productsList = new ArrayList<>();
         Products products = new Products(1L, "TestProductName", 20.00, new ArrayList<>());
         productsList.add(products);
-        ShoppingCart shoppingCart = new ShoppingCart(1L, users, productsList);
+        ShoppingCart shoppingCart = new ShoppingCart(1L, users, productsList, "active");
         //When
         ShoppingCartDto shoppingCartDto = shoppingCartMapper.shoppingCartToShoppingCartDto(shoppingCart);
         Long id = shoppingCartDto.getId();
@@ -47,11 +47,11 @@ public class ShoppingCartMapperTestSuite {
     @Test
     public void testCartDtoToCart() {
         //Given
-        Users users = new Users(1L, "TestUserName", "TestUserPassword");
+        Users users = new Users(1L, "TestUserName", "TestUserPassword", "EMAIL");
         List<Products> productsList = new ArrayList<>();
         Products products = new Products(1L, "TestProductName", 20.00, new ArrayList<>());
         productsList.add(products);
-        ShoppingCartDto shoppingCartDto = new ShoppingCartDto(1L, users, productsList);
+        ShoppingCartDto shoppingCartDto = new ShoppingCartDto(1L, users, productsList, "active");
         //When
         ShoppingCart shoppingCart = shoppingCartMapper.shoppingCartDtoToShoppingCart(shoppingCartDto);
         Long id = shoppingCart.getId();

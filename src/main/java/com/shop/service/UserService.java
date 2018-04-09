@@ -6,6 +6,7 @@ import com.shop.mapper.ShoppingCartMapper;
 import com.shop.repository.UsersRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,9 +27,13 @@ public class UserService {
     }
 
     public Users saveUser(final Users users) {
-        shoppingCartService.saveShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(new ShoppingCartDto(users, new ArrayList<>())));
-        users.setPassword(hashPassword(users.getPassword()));
-        return usersRepository.save(users);
+        try {
+            shoppingCartService.saveShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(new ShoppingCartDto(users, new ArrayList<>())));
+            users.setPassword(hashPassword(users.getPassword()));
+            return usersRepository.save(users);
+        } catch (DataIntegrityViolationException e) {
+            return null;
+        }
     }
 
     public Users getUser(final Long id) {
