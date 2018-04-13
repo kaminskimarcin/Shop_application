@@ -31,8 +31,8 @@ public class ProductService {
         return productsDto;
     }
 
-    public Optional<Products> getById(final Long id) {
-        return productsRepository.findById(id);
+    public Products getById(final Long id) {
+        return productsRepository.getById(id);
     }
 
     public Products saveProduct(final Products products) {

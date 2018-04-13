@@ -37,7 +37,7 @@ public class ShopController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public ProductsView getProductById(@PathVariable Long id) throws ProductNotFoundException {
-        return productsMapper.productsToProductsView(productService.getById(id).orElseThrow(ProductNotFoundException::new));
+    public ProductsView getProductById(@PathVariable Long id) {
+        return productsMapper.productsToProductsView(productService.getById(id));
     }
 }
