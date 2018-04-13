@@ -15,7 +15,6 @@ public class ProductsDto {
     private Long id;
     private String name;
     private double price;
-    private List<ShoppingCart> shoppingCart = new ArrayList<>();
 
     public ProductsDto(String name, double price) {
         this.name = name;

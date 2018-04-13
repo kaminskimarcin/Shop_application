@@ -32,12 +32,11 @@ public class ShoppingCartService {
     @Autowired
     private UsersMapper usersMapper;
 
-    public ShoppingCartDto saveProductsInShoppingCart(final Long cartId, final Long productId) throws ProductNotFoundException {
+    public ShoppingCart saveProductsInShoppingCart(final Long cartId, final Long productId) throws ProductNotFoundException {
         ShoppingCart shoppingCart = shoppingCartRepository.getById(cartId);
-        ShoppingCartDto shoppingCartDto = shoppingCartMapper.shoppingCartToShoppingCartDto(shoppingCart);
-        shoppingCartDto.getProducts().add(productService.getById(productId).orElseThrow(ProductNotFoundException::new));
+        shoppingCart.getProducts().add(productService.getById(productId).orElseThrow(ProductNotFoundException::new));
         productService.updateProducts(cartId, productId);
-        return shoppingCartDto;
+        return shoppingCart;
     }
 
     public ShoppingCart saveShoppingCart(final ShoppingCart shoppingCart) {

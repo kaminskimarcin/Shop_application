@@ -1,7 +1,6 @@
 package com.shop.service;
 
 import com.shop.domain.Products;
-import com.shop.domainDto.ProductsDto;
 import com.shop.mapper.ProductsMapper;
 import com.shop.repository.ProductsRepository;
 import com.shop.repository.ShoppingCartRepository;
@@ -23,12 +22,11 @@ public class ProductService {
     @Autowired
     private ProductsMapper productsMapper;
 
-    public ProductsDto updateProducts(final Long cartId, final Long productId) {
+    public Products updateProducts(final Long cartId, final Long productId) {
         Products products = productsRepository.getById(productId);
-        ProductsDto productsDto = productsMapper.productsToProductsDto(products);
-        productsDto.getShoppingCart().add(shoppingCartRepository.getById(cartId));
-        saveProduct(productsMapper.productsDtoToProducts(productsDto));
-        return productsDto;
+        products.getShoppingCarts().add(shoppingCartRepository.getById(cartId));
+        saveProduct(products);
+        return products;
     }
 
     public Optional<Products> getById(final Long id) {

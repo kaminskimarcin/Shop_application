@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "USERS")
 public class Users {
     private Long id;

@@ -22,8 +22,7 @@ public class ProductsMapper {
         return new ProductsDto(
                 products.getId(),
                 products.getName(),
-                products.getPrice(),
-                products.getShoppingCarts());
+                products.getPrice());
     }
 
     public ProductsView productsToProductsView(final Products products) {
