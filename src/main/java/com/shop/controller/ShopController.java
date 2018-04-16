@@ -21,7 +21,7 @@ public class ShopController {
     @Autowired
     private ProductsMapper productsMapper;
 
-    @RequestMapping(method = RequestMethod.GET, value = "")
+    @RequestMapping(method = RequestMethod.GET, value = "/")
     public List<ProductsDto> getAllProducts() {
         return productsMapper.mapToProductsDto(productService.getAllProducts());
     }
