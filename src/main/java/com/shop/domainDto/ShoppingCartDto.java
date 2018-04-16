@@ -19,6 +19,7 @@ public class ShoppingCartDto {
     private Users users;
     private List<Products> products;
     private String cartStatus = "active";
+    private double cartValue;
 
     public ShoppingCartDto(Users users, List<Products> products) {
         this.users = users;

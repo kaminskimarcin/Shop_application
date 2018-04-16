@@ -16,6 +16,7 @@ public class ShoppingCart {
     private Users users;
     private List<Products> products = new ArrayList<>();
     private String cartStatus = "active";
+    private double cartValue = 0;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,6 +46,11 @@ public class ShoppingCart {
         return cartStatus;
     }
 
+    @Column(name = "CART_VALUE")
+    public double getCartValue() {
+        return cartValue;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -59,5 +65,9 @@ public class ShoppingCart {
 
     public void setCartStatus(String cartStatus) {
         this.cartStatus = cartStatus;
+    }
+
+    public void setCartValue(double cartValue) {
+        this.cartValue = cartValue;
     }
 }

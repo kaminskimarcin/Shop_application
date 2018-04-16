@@ -14,6 +14,6 @@ import java.util.List;
 public class ShoppingCartView {
     private Long id;
     private Long userId;
-    private List<ProductsView> productsViewList;
+    private List<ProductsDto> productsDtos;
     private double price;
 }

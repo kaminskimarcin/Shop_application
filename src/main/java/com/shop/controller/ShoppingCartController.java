@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.domain.ShoppingCart;
+import com.shop.domainDto.ShoppingCartDto;
 import com.shop.domainDto.ShoppingCartView;
 import com.shop.mapper.ProductsMapper;
 import com.shop.mapper.ShoppingCartMapper;
@@ -23,8 +24,8 @@ public class ShoppingCartController {
     private ShoppingCartMapper shoppingCartMapper;
 
     @RequestMapping(method = RequestMethod.PUT, value="/addToShoppingCart/{cartId}/{productId}")
-    public void addProductToShoppingCart(@PathVariable Long cartId, @PathVariable Long productId) throws ProductNotFoundException {
-        shoppingCartService.saveShoppingCart(shoppingCartMapper.shoppingCartDtoToShoppingCart(shoppingCartService.saveProductsInShoppingCart(cartId, productId)));
+    public void addProductToShoppingCart(@PathVariable Long cartId, @PathVariable Long productId) {
+        shoppingCartService.saveShoppingCart(shoppingCartService.saveProductsInShoppingCart(cartId, productId));
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/getShoppingCart/{id}")

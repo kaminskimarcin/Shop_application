@@ -22,8 +22,7 @@ public class ProductsMapper {
         return new ProductsDto(
                 products.getId(),
                 products.getName(),
-                products.getPrice(),
-                products.getShoppingCarts());
+                products.getPrice());
     }
 
     public ProductsView productsToProductsView(final Products products) {
@@ -33,9 +32,9 @@ public class ProductsMapper {
                 products.getPrice());
     }
 
-    public List<ProductsView> mapToProductsViewList(final List<Products> productsList) {
+    public List<ProductsDto> mapToProductsDto(final List<Products> productsList) {
         return productsList.stream()
-                .map(t -> new ProductsView(t.getId(), t.getName(), t.getPrice()))
+                .map(t -> new ProductsDto(t.getId(), t.getName(), t.getPrice()))
                 .collect(Collectors.toList());
     }
 }
