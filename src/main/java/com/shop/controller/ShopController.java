@@ -21,12 +21,12 @@ public class ShopController {
     @Autowired
     private ProductsMapper productsMapper;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/products")
-    public List<ProductsView> getAllProducts() {
-        return productsMapper.mapToProductsViewList(productService.getAllProducts());
+    @RequestMapping(method = RequestMethod.GET, value = "")
+    public List<ProductsDto> getAllProducts() {
+        return productsMapper.mapToProductsDto(productService.getAllProducts());
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/addProduct", consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "/", consumes = APPLICATION_JSON_VALUE)
     public void createTask(@RequestBody ProductsDto productsDto) {
         productService.saveProduct(productsMapper.productsDtoToProducts(productsDto));
     }
@@ -37,7 +37,7 @@ public class ShopController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public ProductsView getProductById(@PathVariable Long id) throws ProductNotFoundException {
-        return productsMapper.productsToProductsView(productService.getById(id).orElseThrow(ProductNotFoundException::new));
+    public ProductsView getProductById(@PathVariable Long id) throws NullPointerException {
+        return productsMapper.productsToProductsView(productService.getById(id).orElseThrow(NullPointerException::new));
     }
 }

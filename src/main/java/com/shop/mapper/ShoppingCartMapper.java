@@ -17,7 +17,8 @@ public class ShoppingCartMapper {
                 shoppingCartDto.getId(),
                 shoppingCartDto.getUsers(),
                 shoppingCartDto.getProducts(),
-                shoppingCartDto.getCartStatus()
+                shoppingCartDto.getCartStatus(),
+                shoppingCartDto.getCartValue()
         );
     }
 
@@ -26,7 +27,8 @@ public class ShoppingCartMapper {
                 shoppingCart.getId(),
                 shoppingCart.getUsers(),
                 shoppingCart.getProducts(),
-                shoppingCart.getCartStatus()
+                shoppingCart.getCartStatus(),
+                shoppingCart.getCartValue()
         );
     }
 
@@ -34,7 +36,7 @@ public class ShoppingCartMapper {
         return new ShoppingCartView(
                 shoppingCart.getId(),
                 shoppingCart.getUsers().getId(),
-                productsMapper.mapToProductsViewList(shoppingCart.getProducts()),
+                productsMapper.mapToProductsDto(shoppingCart.getProducts()),
                 shoppingCart.getProducts().stream()
                         .mapToDouble(k -> k.getPrice()).sum());
     }
