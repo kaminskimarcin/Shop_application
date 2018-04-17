@@ -1,12 +1,8 @@
 package com.shop.domainDto;
 
-import com.shop.domain.ShoppingCart;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor

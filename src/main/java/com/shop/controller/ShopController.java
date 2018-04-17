@@ -1,7 +1,6 @@
 package com.shop.controller;
 
 import com.shop.domainDto.ProductsDto;
-import com.shop.domainDto.ProductsView;
 import com.shop.mapper.ProductsMapper;
 import com.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +36,8 @@ public class ShopController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public ProductsView getProductById(@PathVariable Long id) {
-        return productsMapper.productsToProductsView(productService.getById(id));
+    public ProductsDto getProductById(@PathVariable Long id) {
+        return productsMapper.productsToProductsDto(productService.getById(id));
 
     }
 }

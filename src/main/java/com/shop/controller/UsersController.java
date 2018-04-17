@@ -1,6 +1,5 @@
 package com.shop.controller;
 
-import com.shop.domain.Users;
 import com.shop.domainDto.UsersDto;
 import com.shop.mapper.UsersMapper;
 import com.shop.service.UserService;

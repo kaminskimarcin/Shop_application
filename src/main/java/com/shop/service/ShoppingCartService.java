@@ -2,10 +2,8 @@ package com.shop.service;
 
 import com.shop.domain.ShoppingCart;
 import com.shop.domainDto.UsersDto;
-import com.shop.mapper.ShoppingCartMapper;
 import com.shop.mapper.UsersMapper;
 import com.shop.repository.ShoppingCartRepository;
-import com.shop.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +14,7 @@ public class ShoppingCartService {
     private ShoppingCartRepository shoppingCartRepository;
 
     @Autowired
-    private UsersRepository usersRepository;
-
-    @Autowired
     private UserService userService;
-
-    @Autowired
-    private ShoppingCartMapper shoppingCartMapper;
 
     @Autowired
     private ProductService productService;

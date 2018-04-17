@@ -2,13 +2,10 @@ package com.shop.domainDto;
 
 import com.shop.domain.Products;
 import com.shop.domain.Users;
-import com.shop.mapper.UsersMapper;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -17,12 +14,12 @@ import java.util.List;
 public class ShoppingCartDto {
     private Long id;
     private Users users;
-    private List<Products> products;
+    private List<ProductsDto> productsDto;
     private String cartStatus = "active";
     private double cartValue;
 
-    public ShoppingCartDto(Users users, List<Products> products) {
+    public ShoppingCartDto(Users users, List<ProductsDto> products) {
         this.users = users;
-        this.products = products;
+        this.productsDto = products;
     }
 }
