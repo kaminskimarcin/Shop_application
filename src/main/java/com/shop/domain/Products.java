@@ -15,11 +15,13 @@ public class Products {
     private String name;
     private double price;
     private List<ShoppingCart> shoppingCarts = new ArrayList<>();
+    private String category;
 
-    public Products(Long id, String name, double price) {
+    public Products(Long id, String name, double price, String category) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.category = category;
     }
 
     @Id
@@ -27,7 +29,6 @@ public class Products {
     @Column(name = "PRODUCTS_ID")
     public Long getId() {
         return id;
-
     }
 
     @Column(name = "NAMES")
@@ -45,6 +46,11 @@ public class Products {
         return shoppingCarts;
     }
 
+    @Column(name = "CATEGORY")
+    public String getCategory() {
+        return category;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -59,5 +65,9 @@ public class Products {
 
     public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
         this.shoppingCarts = shoppingCarts;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

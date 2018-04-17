@@ -25,6 +25,16 @@ public class ShopController {
         return productsMapper.mapToProductsDto(productService.getAllProducts());
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/sortedByName")
+    public List<ProductsDto> getAllSortedProductsByName() {
+        return productService.getAllProductsSortedByName();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/byCategory")
+    public List<ProductsDto> getAllProductsByCategory(@RequestParam final String category) {
+        return productsMapper.mapToProductsDto(productService.getAllProductsByCategory(category));
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "/", consumes = APPLICATION_JSON_VALUE)
     public void createTask(@RequestBody ProductsDto productsDto) {
         productService.saveProduct(productsMapper.productsDtoToProducts(productsDto));

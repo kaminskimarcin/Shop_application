@@ -21,21 +21,24 @@ public class ShoppingCartMapperTestSuite {
     @Autowired
     private ShoppingCartMapper shoppingCartMapper;
 
+    @Autowired
+    private ProductsMapper productsMapper;
+
     @Test
     public void testCartToCartDto() {
         //Given
         Users users = new Users(1L, "TestUserName", "TestUserPassword", "EMAIL");
         List<Products> productsList = new ArrayList<>();
-        Products products = new Products(1L, "TestProductName", 20.00, new ArrayList<>());
+        Products products = new Products(1L, "TestProductName", 20.00, new ArrayList<>(), "test");
         productsList.add(products);
-        ShoppingCart shoppingCart = new ShoppingCart(1L, users, productsList, "active");
+        ShoppingCart shoppingCart = new ShoppingCart(1L, users, productsList, "active", 0);
         //When
         ShoppingCartDto shoppingCartDto = shoppingCartMapper.shoppingCartToShoppingCartDto(shoppingCart);
         Long id = shoppingCartDto.getId();
-        String productName = shoppingCartDto.getProducts().get(0).getName();
+        String productName = shoppingCartDto.getProductsDto().get(0).getName();
         String userName = shoppingCartDto.getUsers().getName();
         String userPassword = shoppingCartDto.getUsers().getPassword();
-        double productPrice = shoppingCartDto.getProducts().get(0).getPrice();
+        double productPrice = shoppingCartDto.getProductsDto().get(0).getPrice();
         //Then
         assertEquals(new Long(1), id);
         assertEquals("TestProductName", productName);
@@ -49,9 +52,9 @@ public class ShoppingCartMapperTestSuite {
         //Given
         Users users = new Users(1L, "TestUserName", "TestUserPassword", "EMAIL");
         List<Products> productsList = new ArrayList<>();
-        Products products = new Products(1L, "TestProductName", 20.00, new ArrayList<>());
+        Products products = new Products(1L, "TestProductName", 20.00, new ArrayList<>(), "Test");
         productsList.add(products);
-        ShoppingCartDto shoppingCartDto = new ShoppingCartDto(1L, users, productsList, "active");
+        ShoppingCartDto shoppingCartDto = new ShoppingCartDto(1L, users,productsMapper.mapToProductsDto(productsList) , "active", 0);
         //When
         ShoppingCart shoppingCart = shoppingCartMapper.shoppingCartDtoToShoppingCart(shoppingCartDto);
         Long id = shoppingCart.getId();

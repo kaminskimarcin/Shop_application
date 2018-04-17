@@ -21,7 +21,7 @@ public class ProductsMapperTestSuite {
     @Test
     public void testProductsToProductsDto() {
         //Given
-        Products products = new Products(1L, "TestName", 20.00, new ArrayList<>());
+        Products products = new Products(1L, "TestName", 20.00, new ArrayList<>(), "Test");
         //When
         ProductsDto productsDto = productsMapper.productsToProductsDto(products);
         Long id = productsDto.getId();
@@ -36,7 +36,7 @@ public class ProductsMapperTestSuite {
     @Test
     public void testProductsDtoToProducts() {
         //Given
-        ProductsDto productsDto = new ProductsDto(1L, "TestName", 20.00);
+        ProductsDto productsDto = new ProductsDto(1L, "TestName", 20.00, "Test");
         //When
         Products products = productsMapper.productsDtoToProducts(productsDto);
         Long id = products.getId();
