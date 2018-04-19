@@ -45,14 +45,4 @@ public class ProductService {
     public void deleteProduct(final Long id) {
         productsRepository.deleteById(id);
     }
-
-    public List<Products> getAllProductsByCategory(final String category) {
-        return productsRepository.findAllByCategory(category);
-    }
-
-    public List<ProductsDto> getAllProductsSortedByName() {
-        List<ProductsDto> notSorted = productsMapper.mapToProductsDto(productsRepository.findAll());
-        Collections.sort(notSorted, ProductsDto.nameComparator);
-        return notSorted;
-    }
 }

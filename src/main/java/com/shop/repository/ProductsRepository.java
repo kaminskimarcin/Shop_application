@@ -23,4 +23,6 @@ public interface ProductsRepository extends CrudRepository<Products, Long> {
     Products getById(final Long id);
 
     List<Products> findAllByCategory(final String category);
+
+    List<Products> findAllByName(final String name);
 }

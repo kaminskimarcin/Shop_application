@@ -31,6 +31,26 @@ public class ProductsDto {
         }
     };
 
+    public static Comparator<ProductsDto> categoryComparator = new Comparator<ProductsDto>() {
+        @Override
+        public int compare(ProductsDto o1, ProductsDto o2) {
+            String categoryOne = o1.getCategory().toUpperCase();
+            String categoryTwo = o2.getCategory().toUpperCase();
+
+            return categoryOne.compareTo(categoryTwo);
+        }
+    };
+
+    public static Comparator<ProductsDto> priceComparator = new Comparator<ProductsDto>() {
+        @Override
+        public int compare(ProductsDto o1, ProductsDto o2) {
+            Double priceOne = o1.getPrice();
+            Double priceTwo = o2.getPrice();
+
+            return priceOne.compareTo(priceTwo);
+        }
+    };
+
     @Override
     public String toString() {
         return "ProductsDto{" +
