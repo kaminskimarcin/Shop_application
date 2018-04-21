@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.shop.domainDto.ProductsDto;
 import com.shop.mapper.ProductsMapper;
 import com.shop.service.ProductService;
@@ -53,19 +54,9 @@ public class ShopController {
         return productsFilterService.getAllProductsWithCategorySortedByName(category);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/byCategory")
-    public List<ProductsDto> getAllProductsByCategory(@RequestParam final String category) {
-        return productsMapper.mapToProductsDto(productsFilterService.getAllProductsByCategory(category));
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/filterByName")
-    public List<ProductsDto> getAllProductsWithName(@RequestParam final String name) {
-        return productsMapper.mapToProductsDto(productsFilterService.getAllProductsByName(name));
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/filterByPrice")
-    public List<ProductsDto> getAllProductsWithPrice(@RequestParam final Double startPrice, @RequestParam final Double endPrice) {
-        return productsMapper.mapToProductsDto(productsFilterService.getAllProductsByPrice(startPrice, endPrice));
+    @RequestMapping(method = RequestMethod.GET, value = "/filter")
+    public List<ProductsDto> getSortedProducts(@RequestParam(required = false) final String name, @RequestParam(required = false) final String category, @RequestParam(required = false) final Double startPrice, @RequestParam(required = false) final Double endPrice) {
+        return productsFilterService.getFilteredProducts(name, category, startPrice, endPrice);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")

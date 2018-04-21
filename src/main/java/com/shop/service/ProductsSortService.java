@@ -17,6 +17,21 @@ public class ProductsSortService {
     @Autowired
     private ProductsRepository productsRepository;
 
+    public List<ProductsDto> getSortedProducts(List<ProductsDto> productsDtoList, String sortedBy) {
+        if (sortedBy == "category") {
+            Collections.sort(productsDtoList, ProductsDto.categoryComparator);
+            return productsDtoList;
+        } else if (sortedBy == "name") {
+            Collections.sort(productsDtoList, ProductsDto.nameComparator);
+            return productsDtoList;
+        } else if (sortedBy == "price") {
+            Collections.sort(productsDtoList, ProductsDto.priceComparator);
+            return productsDtoList;
+        } else {
+            return productsDtoList;
+        }
+    }
+
     public List<ProductsDto> getAllProductsSortedByName() {
         List<ProductsDto> productsDtoList = productsMapper.mapToProductsDto(productsRepository.findAll());
         Collections.sort(productsDtoList, ProductsDto.nameComparator);
