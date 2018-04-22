@@ -34,24 +34,14 @@ public class ShopController {
         return productsMapper.mapToProductsDto(productService.getAllProducts());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/sortedByName")
-    public List<ProductsDto> getAllSortedProductsByName() {
-        return productsSortService.getAllProductsSortedByName();
+    @RequestMapping(method = RequestMethod.GET, value = "/sortProducts")
+    public List<ProductsDto> getSortedProducts(@RequestParam final String sortType) {
+        return productsSortService.getSortedProducts(sortType);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/sortedByCategory")
-    public List<ProductsDto> getAllSortedProductsByCategory() {
-        return productsSortService.getAllProductsSortedByCategory();
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/sortedByPrice")
-    public List<ProductsDto> getAllProductsSortedByPrice() {
-        return productsSortService.getAllProductsSortedByPrice();
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/sorted")
-    public List<ProductsDto> getAllProductsWithCategorySortedByName(@RequestParam final String category) {
-        return productsFilterService.getAllProductsWithCategorySortedByName(category);
+    @RequestMapping(method = RequestMethod.GET, value = "/sortAndFilter")
+    public List<ProductsDto> getSortedProducts(@RequestParam(required = false) final String name, @RequestParam(required = false) final String category, @RequestParam(required = false) final Double startPrice, @RequestParam(required = false) final Double endPrice, @RequestParam(required = false) final String sortType) {
+        return productsFilterService.getFilteredAndSortedProducts(name, category, startPrice, endPrice, sortType);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/filter")

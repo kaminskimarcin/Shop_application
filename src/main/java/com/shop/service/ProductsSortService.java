@@ -11,42 +11,34 @@ import java.util.List;
 
 @Service
 public class ProductsSortService {
-    @Autowired
-    private ProductsMapper productsMapper;
+    private final ProductsMapper productsMapper;
+
+    private final ProductsRepository productsRepository;
 
     @Autowired
-    private ProductsRepository productsRepository;
+    public ProductsSortService(ProductsMapper productsMapper, ProductsRepository productsRepository) {
+        this.productsMapper = productsMapper;
+        this.productsRepository = productsRepository;
+    }
 
-    public List<ProductsDto> getSortedProducts(List<ProductsDto> productsDtoList, String sortedBy) {
-        if (sortedBy == "category") {
-            Collections.sort(productsDtoList, ProductsDto.categoryComparator);
+    public List<ProductsDto> sortProducts(List<ProductsDto> productsDtoList, String sortedBy) {
+        if (sortedBy.equals("category")) {
+            productsDtoList.sort(ProductsDto.categoryComparator);
             return productsDtoList;
-        } else if (sortedBy == "name") {
-            Collections.sort(productsDtoList, ProductsDto.nameComparator);
+        } else if (sortedBy.equals("name")) {
+            productsDtoList.sort(ProductsDto.nameComparator);
             return productsDtoList;
-        } else if (sortedBy == "price") {
-            Collections.sort(productsDtoList, ProductsDto.priceComparator);
+        } else if (sortedBy.equals("price")) {
+            productsDtoList.sort(ProductsDto.priceComparator);
             return productsDtoList;
         } else {
             return productsDtoList;
         }
     }
 
-    public List<ProductsDto> getAllProductsSortedByName() {
-        List<ProductsDto> productsDtoList = productsMapper.mapToProductsDto(productsRepository.findAll());
-        Collections.sort(productsDtoList, ProductsDto.nameComparator);
-        return productsDtoList;
-    }
-
-    public List<ProductsDto> getAllProductsSortedByCategory() {
-        List<ProductsDto> productsDtoList = productsMapper.mapToProductsDto(productsRepository.findAll());
-        Collections.sort(productsDtoList, ProductsDto.categoryComparator);
-        return productsDtoList;
-    }
-
-    public List<ProductsDto> getAllProductsSortedByPrice() {
-        List<ProductsDto> productsDtoList = productsMapper.mapToProductsDto(productsRepository.findAll());
-        Collections.sort(productsDtoList, ProductsDto.priceComparator);
-        return productsDtoList;
+    public List<ProductsDto> getSortedProducts(final String sortType) {
+        List<ProductsDto> productsDtos = productsMapper.mapToProductsDto(productsRepository.findAll());
+        sortProducts(productsDtos, sortType);
+        return productsDtos;
     }
 }

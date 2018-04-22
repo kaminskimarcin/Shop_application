@@ -14,14 +14,15 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    @Autowired
-    private ProductsRepository productsRepository;
+    private final ProductsRepository productsRepository;
+
+    private final ShoppingCartRepository shoppingCartRepository;
 
     @Autowired
-    private ShoppingCartRepository shoppingCartRepository;
-
-    @Autowired
-    private ProductsMapper productsMapper;
+    public ProductService(ProductsRepository productsRepository, ShoppingCartRepository shoppingCartRepository) {
+        this.productsRepository = productsRepository;
+        this.shoppingCartRepository = shoppingCartRepository;
+    }
 
     public Products updateProducts(final Long cartId, final Long productId) {
         Products products = productsRepository.getById(productId);
