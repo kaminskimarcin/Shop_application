@@ -8,4 +8,6 @@ public interface UsersRepository extends CrudRepository<Users,Long> {
     Users save(Users users);
 
     Users getById(final Long id);
+
+    Users findByName(final String username);
 }

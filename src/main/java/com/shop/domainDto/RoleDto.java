@@ -1,17 +1,16 @@
 package com.shop.domainDto;
 
-import com.shop.domain.Role;
+import com.shop.domain.Users;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
-public class UsersDto {
+public class RoleDto {
     private Long id;
     private String name;
-    private String password;
-    private String email;
-    private Set<RoleDto> rolesDto;
 }
