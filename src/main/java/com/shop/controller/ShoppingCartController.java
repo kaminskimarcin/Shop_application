@@ -21,8 +21,8 @@ public class ShoppingCartController {
         shoppingCartService.saveShoppingCart(shoppingCartService.saveProductsInShoppingCart(cartId, productId));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/getShoppingCart/{id}")
+    @RequestMapping(method = RequestMethod.GET, value="/getShoppingCart")
     public ShoppingCartDto getCart(@PathVariable final Long id) {
-        return shoppingCartMapper.shoppingCartToShoppingCartDto(shoppingCartService.getShoppingCartByUser(id));
+        return shoppingCartMapper.shoppingCartToShoppingCartDto(shoppingCartService.getShoppingCartByUser());
     }
 }

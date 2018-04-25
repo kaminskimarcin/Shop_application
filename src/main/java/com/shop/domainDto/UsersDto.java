@@ -1,6 +1,5 @@
 package com.shop.domainDto;
 
-import com.shop.domain.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,5 +12,6 @@ public class UsersDto {
     private String name;
     private String password;
     private String email;
-    private Set<RoleDto> rolesDto;
+    private boolean enabled;
+    private Set<UserRoleDto> rolesDto;
 }

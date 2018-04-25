@@ -1,13 +1,9 @@
 package com.shop.mapper;
 
-import com.shop.domain.Role;
 import com.shop.domain.Users;
-import com.shop.domainDto.RoleDto;
 import com.shop.domainDto.UsersDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.Set;
 
 @Component
 public class UsersMapper {
@@ -25,7 +21,7 @@ public class UsersMapper {
                 usersDto.getName(),
                 usersDto.getPassword(),
                 usersDto.getEmail(),
-                usersDto.getPassword(),
+                usersDto.isEnabled(),
                 roleMapper.mapToRoleSet(usersDto.getRolesDto())
         );
     }
@@ -36,7 +32,8 @@ public class UsersMapper {
                 users.getName(),
                 users.getPassword(),
                 users.getEmail(),
-                roleMapper.mapToRoleDtoSet(users.getRoles())
+                users.isEnabled(),
+                roleMapper.mapToRoleDtoSet(users.getUserRole())
         );
     }
 }

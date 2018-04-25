@@ -10,7 +10,8 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoleDto {
+public class UserRoleDto {
     private Long id;
-    private String name;
+    private UsersDto usersDto;
+    private String role;
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -14,8 +15,15 @@ public class Users {
     private String name;
     private String password;
     private String email;
-    private String passwordConfirm;
-    private Set<Role> roles;
+    private boolean enabled;
+    private Set<UserRole> userRole = new HashSet<>(0);
+
+    public Users(String name, String password, String email, boolean enabled) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.enabled = enabled;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,15 +48,14 @@ public class Users {
         return email;
     }
 
-    @Transient
-    public String getPasswordConfirm() {
-        return passwordConfirm;
+    @Column(name = "ENABLED")
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    @ManyToMany
-    @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    public Set<Role> getRoles() {
-        return roles;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+    public Set<UserRole> getUserRole() {
+        return userRole;
     }
 
     public void setId(Long id) {
@@ -67,11 +74,11 @@ public class Users {
         this.email = email;
     }
 
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setUserRole(Set<UserRole> userUserRole) {
+        this.userRole = userUserRole;
     }
 }

@@ -5,6 +5,8 @@ import com.shop.domainDto.UsersDto;
 import com.shop.mapper.UsersMapper;
 import com.shop.repository.ShoppingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,8 +37,10 @@ public class ShoppingCartService {
         return shoppingCartRepository.save(shoppingCart);
     }
 
-    public ShoppingCart getShoppingCartByUser(final Long id) {
-        UsersDto usersDto = usersMapper.usersToUsersDto(userService.getUser(id));
+    public ShoppingCart getShoppingCartByUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        UsersDto usersDto = usersMapper.usersToUsersDto(userService.findByUsername(username));
         return shoppingCartRepository.getByUsers(usersMapper.usersDtoToUsers(usersDto));
     }
 }
