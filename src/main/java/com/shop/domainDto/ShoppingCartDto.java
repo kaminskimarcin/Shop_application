@@ -13,13 +13,13 @@ import java.util.List;
 @AllArgsConstructor
 public class ShoppingCartDto {
     private Long id;
-    private Users users;
+    private UsersDto usersDto;
     private List<ProductsDto> productsDto;
     private String cartStatus = "active";
     private double cartValue;
 
     public ShoppingCartDto(Users users, List<ProductsDto> products) {
-        this.users = users;
+        this.usersDto = usersDto;
         this.productsDto = products;
     }
 }

@@ -14,10 +14,13 @@ public class ShoppingCartMapper {
     @Autowired
     private ShoppingCartMapper shoppingCartMapper;
 
+    @Autowired
+    private UsersMapper usersMapper;
+
     public ShoppingCart shoppingCartDtoToShoppingCart(ShoppingCartDto shoppingCartDto) {
         return new ShoppingCart(
                 shoppingCartDto.getId(),
-                shoppingCartDto.getUsers(),
+                usersMapper.usersDtoToUsers(shoppingCartDto.getUsersDto()),
                 productsMapper.mapToProducts(shoppingCartDto.getProductsDto()),
                 shoppingCartDto.getCartStatus(),
                 shoppingCartDto.getCartValue()
@@ -27,7 +30,7 @@ public class ShoppingCartMapper {
     public ShoppingCartDto shoppingCartToShoppingCartDto(ShoppingCart shoppingCart) {
         return new ShoppingCartDto(
                 shoppingCart.getId(),
-                shoppingCart.getUsers(),
+                usersMapper.usersToUsersDto(shoppingCart.getUsers()),
                 productsMapper.mapToProductsDto(shoppingCart.getProducts()),
                 shoppingCart.getCartStatus(),
                 shoppingCart.getCartValue()

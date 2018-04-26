@@ -1,0 +1,25 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Hello Spring Security</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
+</head>
+<body>
+<h1>Hello!</h1>
+<p>This is a welcome page.
+You can use some endpoints without login!</p>
+<ul>
+    <li><a href="localhost:8080/shop/">Get all products available in shop</a></li>
+    <li>Get all products filtered by: <br> <a href="http://localhost:8080/shop/filter?category=Electronic">category <br></a><a href="http://localhost:8080/shop/filter?name=Huwawei">name <br></a><a href="http://localhost:8080/shop/filter?startPrice=1000">prize</a></li>
+    <li>Get all products sorted by: <br> <a href="http://localhost:8080/shop/sortProducts?sortType=category">category <br></a><a href="http://localhost:8080/shop/sortProducts?sortType=name">name <br></a><a href="http://localhost:8080/shop/sortProducts?sortType=price">prize</a></li>
+    <li>Also you can get products sorted and filtered: <br> <a href="http://localhost:8080/shop/sortAndFilter?name=Huwawei&sortType=price">Filtered by name Huwawei and sorted by price<br></a></li>
+</ul>
+<p>POST, PUT and DELETE methods are not implemented on front side</p>
+
+<p><a href="http://localhost:8080/login">Login to get more application's methods</a></p>
+</body>
+</html>
+

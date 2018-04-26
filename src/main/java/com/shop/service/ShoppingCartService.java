@@ -36,7 +36,6 @@ public class ShoppingCartService {
     }
 
     public ShoppingCart getShoppingCartByUser(final Long id) {
-        UsersDto usersDto = usersMapper.usersToUsersDto(userService.getUser(id));
-        return shoppingCartRepository.getByUsers(usersMapper.usersDtoToUsers(usersDto));
+        return shoppingCartRepository.getByUsers_Id(id);
     }
 }

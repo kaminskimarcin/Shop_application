@@ -4,6 +4,8 @@ import com.shop.domain.Users;
 import com.shop.domainDto.UsersDto;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
+
 @Component
 public class UsersMapper {
 
@@ -12,7 +14,8 @@ public class UsersMapper {
                 usersDto.getId(),
                 usersDto.getName(),
                 usersDto.getPassword(),
-                usersDto.getEmail()
+                usersDto.getEmail(),
+                new HashSet<>()
         );
     }
 

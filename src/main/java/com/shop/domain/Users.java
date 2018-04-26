@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,6 +14,7 @@ public class Users {
     private String name;
     private String password;
     private String email;
+    private Set<UserRole> userRole;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,6 +39,14 @@ public class Users {
         return email;
     }
 
+    @ManyToMany
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "userrole_id"))
+    public Set<UserRole> getUserRole() {
+        return userRole;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -51,5 +61,9 @@ public class Users {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setUserRole(Set<UserRole> userRole) {
+        this.userRole = userRole;
     }
 }

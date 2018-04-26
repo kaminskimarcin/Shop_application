@@ -13,18 +13,15 @@ import java.util.ArrayList;
 
 @Service
 public class UserService {
-    private final ShoppingCartService shoppingCartService;
-
-    private final ShoppingCartMapper shoppingCartMapper;
-
-    private final UsersRepository usersRepository;
+    @Autowired
+    private ShoppingCartService shoppingCartService;
 
     @Autowired
-    public UserService(ShoppingCartMapper shoppingCartMapper, ShoppingCartService shoppingCartService, UsersRepository usersRepository) {
-        this.shoppingCartMapper = shoppingCartMapper;
-        this.shoppingCartService = shoppingCartService;
-        this.usersRepository = usersRepository;
-    }
+    private ShoppingCartMapper shoppingCartMapper;
+
+    @Autowired
+    private UsersRepository usersRepository;
+
 
     private String hashPassword(String userPassword) {
         return BCrypt.hashpw(userPassword, BCrypt.gensalt());
@@ -42,5 +39,9 @@ public class UserService {
 
     public Users getUser(final Long id) {
         return usersRepository.getById(id);
+    }
+
+    public Users getUserByUsername(final String username) {
+        return usersRepository.findByName(username);
     }
 }

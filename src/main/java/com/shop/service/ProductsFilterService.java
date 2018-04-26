@@ -67,7 +67,7 @@ public class ProductsFilterService {
         if (name != null) {
             productslist = filterByName(productslist, name);
         }
-        if (startPrice == null || endPrice == null) {
+        if (startPrice == null && endPrice == null) {
             //do nothing
         } else {
             productslist = filterByPrice(productslist, startPrice, endPrice);

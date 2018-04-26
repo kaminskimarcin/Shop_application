@@ -38,6 +38,7 @@ dependencies {
 	compile 'org.springframework.security:spring-security-web:5.0.4.RELEASE'
 	compile 'org.springframework.security:spring-security-config:5.0.4.RELEASE'
 	compile group: 'org.mindrot', name: 'jbcrypt', version: '0.3m'
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
