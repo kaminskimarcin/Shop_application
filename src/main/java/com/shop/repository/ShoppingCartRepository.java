@@ -13,8 +13,6 @@ public interface ShoppingCartRepository extends CrudRepository<ShoppingCart, Lon
 
     ShoppingCart getById(final Long id);
 
-    ShoppingCart getByUsers(final Users users);
-
     ShoppingCart getByUsers_Id(final Long id);
 
     ShoppingCart save(ShoppingCart shoppingCart);

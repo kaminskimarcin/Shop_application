@@ -21,8 +21,4 @@ public interface ProductsRepository extends CrudRepository<Products, Long> {
     void deleteById(Long id);
 
     Products getById(final Long id);
-
-    List<Products> findAllByCategory(final String category);
-
-    List<Products> findAllByName(final String name);
 }

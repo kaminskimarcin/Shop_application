@@ -10,17 +10,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class ShoppingCartService {
 
-    @Autowired
-    private ShoppingCartRepository shoppingCartRepository;
+    private final ShoppingCartRepository shoppingCartRepository;
+
+    private final UserService userService;
+
+    private final ProductService productService;
+
+    private final UsersMapper usersMapper;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    private ProductService productService;
-
-    @Autowired
-    private UsersMapper usersMapper;
+    public ShoppingCartService(ShoppingCartRepository shoppingCartRepository, UserService userService, ProductService productService, UsersMapper usersMapper) {
+        this.shoppingCartRepository = shoppingCartRepository;
+        this.userService = userService;
+        this.productService = productService;
+        this.usersMapper = usersMapper;
+    }
 
     public ShoppingCart saveProductsInShoppingCart(final Long cartId, final Long productId) {
         ShoppingCart shoppingCart = shoppingCartRepository.getById(cartId);

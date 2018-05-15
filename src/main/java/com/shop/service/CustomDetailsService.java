@@ -21,8 +21,12 @@ import java.util.stream.Collectors;
 @Service
 public class CustomDetailsService implements UserDetailsService {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public CustomDetailsService(UserService userService) {
+        this.userService = userService;
+    }
 
     @Transactional
     @Override
@@ -31,7 +35,6 @@ public class CustomDetailsService implements UserDetailsService {
         Users users = userService.getUserByUsername(username);
         List<GrantedAuthority> authorities = buildUserAuthority(users.getUserRole());
         System.out.println("user role " + users.getUserRole());
-        authorities.stream().forEach(k -> System.out.println(k));
         return new User(users.getName(), users.getPassword(), true, true, true, true, authorities);
     }
 
