@@ -4,6 +4,7 @@ import com.shop.domainDto.ProductsDto;
 import com.shop.mapper.ProductsMapper;
 import com.shop.repository.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -21,18 +22,19 @@ public class ProductsSortService {
         this.productsRepository = productsRepository;
     }
 
-    public List<ProductsDto> sortProducts(List<ProductsDto> productsDtoList, String sortedBy) {
-        if (sortedBy.equals("category")) {
-            productsDtoList.sort(ProductsDto.categoryComparator);
-            return productsDtoList;
-        } else if (sortedBy.equals("name")) {
-            productsDtoList.sort(ProductsDto.nameComparator);
-            return productsDtoList;
-        } else if (sortedBy.equals("price")) {
-            productsDtoList.sort(ProductsDto.priceComparator);
-            return productsDtoList;
-        } else {
-            return productsDtoList;
+    List<ProductsDto> sortProducts(List<ProductsDto> productsDtoList, String sortedBy) {
+        switch (sortedBy) {
+            case "category":
+                productsDtoList.sort(ProductsDto.categoryComparator);
+                return productsDtoList;
+            case "name":
+                productsDtoList.sort(ProductsDto.nameComparator);
+                return productsDtoList;
+            case "price":
+                productsDtoList.sort(ProductsDto.priceComparator);
+                return productsDtoList;
+            default:
+                return productsDtoList;
         }
     }
 

@@ -1,14 +1,13 @@
 package com.shop.service;
 
 import com.shop.domain.Products;
-import com.shop.domainDto.ProductsDto;
-import com.shop.mapper.ProductsMapper;
 import com.shop.repository.ProductsRepository;
 import com.shop.repository.ShoppingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -45,5 +44,9 @@ public class ProductService {
 
     public void deleteProduct(final Long id) {
         productsRepository.deleteById(id);
+    }
+
+    public Page getAllProducts(final Pageable pageable) {
+        return productsRepository.findAll(pageable);
     }
 }

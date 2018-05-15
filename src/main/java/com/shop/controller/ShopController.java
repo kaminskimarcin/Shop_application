@@ -1,12 +1,14 @@
 package com.shop.controller;
 
-import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.shop.domainDto.ProductsDto;
 import com.shop.mapper.ProductsMapper;
 import com.shop.service.ProductService;
 import com.shop.service.ProductsFilterService;
 import com.shop.service.ProductsSortService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +34,12 @@ public class ShopController {
     @RequestMapping(method = RequestMethod.GET, value = "/shop")
     public List<ProductsDto> getAllProducts() {
         return productsMapper.mapToProductsDto(productService.getAllProducts());
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/shop/pagination")
+    public Page<ProductsDto> getAllProductsWithPageable(@RequestParam Integer page) {
+        PageRequest page_request = PageRequest.of(page,5, Sort.Direction.ASC, "id");
+        return productsMapper.mapToPageProductsDto(productService.getAllProducts(page_request));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/shop/sortProducts")
