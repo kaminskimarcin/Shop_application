@@ -24,6 +24,9 @@ public class ShoppingCartMapperTestSuite {
     @Autowired
     private ProductsMapper productsMapper;
 
+    @Autowired
+    private UsersMapper usersMapper;
+
     @Test
     public void testCartToCartDto() {
         //Given
@@ -36,8 +39,8 @@ public class ShoppingCartMapperTestSuite {
         ShoppingCartDto shoppingCartDto = shoppingCartMapper.shoppingCartToShoppingCartDto(shoppingCart);
         Long id = shoppingCartDto.getId();
         String productName = shoppingCartDto.getProductsDto().get(0).getName();
-        String userName = shoppingCartDto.getUsers().getName();
-        String userPassword = shoppingCartDto.getUsers().getPassword();
+        String userName = shoppingCartDto.getUsersDto().getName();
+        String userPassword = shoppingCartDto.getUsersDto().getPassword();
         double productPrice = shoppingCartDto.getProductsDto().get(0).getPrice();
         //Then
         assertEquals(new Long(1), id);
@@ -54,7 +57,7 @@ public class ShoppingCartMapperTestSuite {
         List<Products> productsList = new ArrayList<>();
         Products products = new Products(1L, "TestProductName", 20.00, new ArrayList<>(), "Test");
         productsList.add(products);
-        ShoppingCartDto shoppingCartDto = new ShoppingCartDto(1L, users,productsMapper.mapToProductsDto(productsList) , "active", 0);
+        ShoppingCartDto shoppingCartDto = new ShoppingCartDto(1L, usersMapper.usersToUsersDto(users),productsMapper.mapToProductsDto(productsList) , "active", 0);
         //When
         ShoppingCart shoppingCart = shoppingCartMapper.shoppingCartDtoToShoppingCart(shoppingCartDto);
         Long id = shoppingCart.getId();

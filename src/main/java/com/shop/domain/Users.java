@@ -16,6 +16,13 @@ public class Users {
     private String email;
     private Set<UserRole> userRole;
 
+    public Users(Long id, String name, String password, String email) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "USER_ID", nullable = false, unique = true)

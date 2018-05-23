@@ -1,5 +1,6 @@
 package com.shop.mapper;
 
+import com.shop.domain.Products;
 import com.shop.domain.ShoppingCart;
 import com.shop.domainDto.ShoppingCartDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class ShoppingCartMapper {
                 usersMapper.usersToUsersDto(shoppingCart.getUsers()),
                 productsMapper.mapToProductsDto(shoppingCart.getProducts()),
                 shoppingCart.getCartStatus(),
-                shoppingCart.getCartValue()
+                shoppingCart.getProducts().stream().mapToDouble(Products::getPrice).sum()
         );
     }
 }
