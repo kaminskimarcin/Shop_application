@@ -25,7 +25,7 @@ public class ProductsFilterService {
         this.productsSortService = productsSortService;
     }
 
-    private List<ProductsDto> filterByPrice(List<ProductsDto> productsDtoList, Double startPrice, Double endPrice) {
+    public List<ProductsDto> filterByPrice(List<ProductsDto> productsDtoList, Double startPrice, Double endPrice) {
         if (startPrice == null) {
             startPrice = 0.00;
         }
@@ -42,14 +42,14 @@ public class ProductsFilterService {
                 .collect(Collectors.toList());
     }
 
-    private List<ProductsDto> filterByCategory(List<ProductsDto> productsDtoList, String category) {
+    public List<ProductsDto> filterByCategory(List<ProductsDto> productsDtoList, String category) {
         return productsDtoList.stream()
                 .filter(k -> k.getCategory().contains(category))
                 .collect(Collectors.toList());
 
     }
 
-    private List<ProductsDto> filterByName(List<ProductsDto> productsDtoList, String name) {
+    public List<ProductsDto> filterByName(List<ProductsDto> productsDtoList, String name) {
         if (name == null) {
             return productsDtoList;
         } else {
