@@ -34,11 +34,12 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.0.1.RELEASE'
 	compile('mysql:mysql-connector-java')
-	compileOnly "org.projectlombok:lombok:1.16.16"
 	compile 'org.springframework.security:spring-security-web:5.0.4.RELEASE'
 	compile 'org.springframework.security:spring-security-config:5.0.4.RELEASE'
 	compile group: 'org.mindrot', name: 'jbcrypt', version: '0.3m'
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.0'
+
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
