@@ -18,14 +18,6 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProductsFilterServiceTest {
-    @Autowired
-    private ProductsRepository productsRepository;
-
-    @Autowired
-    private ProductsMapper productsMapper;
-
-    @Autowired
-    private ProductsSortService productsSortService;
 
     @Autowired
     private ProductsFilterService productsFilterService;
