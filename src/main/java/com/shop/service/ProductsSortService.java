@@ -14,12 +14,12 @@ import java.util.List;
 public class ProductsSortService {
     private final ProductsMapper productsMapper;
 
-    private final ProductsRepository productsRepository;
+    private final ProductService productsService;
 
     @Autowired
-    public ProductsSortService(ProductsMapper productsMapper, ProductsRepository productsRepository) {
+    public ProductsSortService(ProductsMapper productsMapper, ProductService productsService) {
         this.productsMapper = productsMapper;
-        this.productsRepository = productsRepository;
+        this.productsService = productsService;
     }
 
     List<ProductsDto> sortProducts(List<ProductsDto> productsDtoList, String sortedBy) {
@@ -39,7 +39,7 @@ public class ProductsSortService {
     }
 
     public List<ProductsDto> getSortedProducts(final String sortType) {
-        List<ProductsDto> productsDtos = productsMapper.mapToProductsDto(productsRepository.findAll());
+        List<ProductsDto> productsDtos = productsMapper.mapToProductsDto(productsService.getAllProducts());
         sortProducts(productsDtos, sortType);
         return productsDtos;
     }
